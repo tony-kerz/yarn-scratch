@@ -1,0 +1,53 @@
+{
+  "name": "yarn-scratch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "repository": "git@github.com:tony-kerz/yarn-scratch.git",
+  "author": "tlk",
+  "license": "ISC",
+  "scripts": {
+    "start": "env DEBUG=app:* babel-watch src/api",
+    "start-test": "env NODE_ENV=auto DEBUG=app:* babel-watch src/api",
+    "ava": "env NODE_ENV=auto ava -s test/ava",
+    "ava-debug": "env DEBUG=test:*,app:* NODE_ENV=auto ava -s",
+    "pretest": "xo",
+    "test": "npm run ava",
+    "prebuild": "npm run test",
+    "build": "rm -rf node_modules && babel src -d dist"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "ava": "^0.19.1",
+    "babel-cli": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-watch": "^2.0.6",
+    "xo": "^0.18.1"
+  },
+  "ava": {
+    "require": [
+      "babel-register",
+      "babel-polyfill"
+    ]
+  },
+  "xo": {
+    "space": true,
+    "semicolon": false,
+    "rules": {
+      "capitalized-comments": "off",
+      "import/prefer-default-export": "off",
+      "linebreak-style": "off",
+      "new-cap": "off",
+      "no-console": "error",
+      "no-unused-expressions": [
+        "error",
+        {
+          "allowShortCircuit": true,
+          "allowTernary": true
+        }
+      ],
+      "radix": "off"
+    }
+  }
+}
